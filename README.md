@@ -15,3 +15,9 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
+
+![image](https://user-images.githubusercontent.com/99102981/161471374-ca0f6514-5cc4-46b6-b2bf-a84ac631a65a.png)
+
+
+
+https://deenie818.github.io/Code-Quiz/
