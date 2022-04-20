@@ -4,19 +4,17 @@ var questions = [
     ["Where is the correct place to insert a JavaScript?", "The head section", "The body section", "Both the head and the body section are correct", "C"],
     ["What is the correct syntax for referring to an external script called 'xxx.js'?", 'script src="xxx.js"', 'script href="xxx.js"', 'script name="xxx.js"', "A"]
 ];
-function _(x) {
-    return document.getElementById(x);
-}
+
 function renderQuestion() {
-    test = _("test");
+    test = document.getElementById("test");
     if (pos >= questions.length) {
         test.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct</h2>";
-        _("test_status").innerHTML = "Test Completed";
+        document.getElementById("test_status").innerHTML = "Test Completed";
         pos = 0;
         correct = 0;
         return false;
     }
-    _("test_status").innerHTML = "Question " + (pos + 1) + " of " + questions.length;
+    document.getElementById("test_status").innerHTML = "Question " + (pos + 1) + " of " + questions.length;
     question = questions[pos][0];
     chA = questions[pos][1];
     chB = questions[pos][2];
@@ -28,9 +26,22 @@ function renderQuestion() {
     test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
 
 }
+var timeCounter = 45
+function startTimer() {
+    var timer = setInterval (function () {
+timeCounter = timeCounter-1
+document.getElementById("timerDisplay").textContent=timeCounter
+if (timeCounter <= 0) {
+    clearInterval(timer)
+}
+    }, 1000)
+}
 
-
-
+function startQuiz(){
+    startTimer()
+    renderQuestion()
+    
+}
 
 function checkAnswer() {
     choices = document.getElementsByName("choices");
@@ -47,5 +58,5 @@ function checkAnswer() {
     renderQuestion();
 }
 
-window.addEventListener("load", renderQuestion, false);
-
+// window.addEventListener("load", renderQuestion, false);
+document.getElementById("start").addEventListener("click", startQuiz)
